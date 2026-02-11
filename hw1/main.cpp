@@ -10,12 +10,6 @@
 std::vector<Polygon> polygons;
 
 float theta = 0.0f;
-int xangle = 0;
-int yangle = 0;
-int zangle = 0;
-int xpos = 0;
-int ypos = 0;
-int zpos = 0;
 
 std::vector<Polygon> testPolygons(int n, int m)
 {
@@ -96,29 +90,49 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glTranslatef(xpos / 500.0, ypos / 500.0, zpos / 500.0);
-    glRotatef(xangle * theta, 1.0, 0.0, 0.0);
-    glRotatef(yangle * theta, 0.0, 1.0, 0.0);
-    glRotatef(zangle * theta, 0.0, 0.0, 1.0);
-    theta += 5;
+    glRotatef(theta, 0.0, 1.0, 0.0);
+    theta += 1.0f;
     for (Polygon &p : polygons) // iterate thru each polygon in the vector of polygons
     {
         p.display();
     }
 
-    glFlush();
+    glutSwapBuffers();
 }
+
+void reshape(int w, int h)
+{
+    glViewport(0, 0, w, h);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    float aspect = (h == 0) ? 1.0f : (float)w / (float)h;
+
+    if (aspect >= 1.0f)
+        glOrtho(-aspect, aspect, -1, 1, -1, 1);
+    else
+        glOrtho(-1, 1, -1/aspect, 1/aspect, -1, 1);
+
+    glMatrixMode(GL_MODELVIEW);
+
+    glutPostRedisplay();
+}
+
+
 
 int main(int argc, char *argv[])
 {
-    polygons = testPolygons(8, 20);
+    polygons = testPolygons(4, 5);          // sides, polygons
     // allInformation(polygons);
     glutInit(&argc, argv);
     glutInitWindowSize(500, 500);
     glutInitWindowPosition(250, 250);
-    glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
-    glutCreateWindow("Square");
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+    glutCreateWindow("Warren Roberts - Assignment 1");
+    glEnable(GL_DEPTH_TEST);
     glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
     init();
     glutMainLoop();
 }

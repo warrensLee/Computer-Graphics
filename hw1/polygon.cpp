@@ -54,4 +54,3 @@ void Polygon::display()
     }
     glEnd();
 }
-s
