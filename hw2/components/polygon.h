@@ -4,12 +4,7 @@
 #include <vector>
 #include <iostream>
 #include "vertex.h" // NOT the .cpp
-#ifdef __APPLE__
-#include <OpenGL/gl.h>
-#else
-#include <GL/gl.h>
-#include <GL/freeglut.h>
-#endif
+
 
 //#include <GL/freeglut.h>
 

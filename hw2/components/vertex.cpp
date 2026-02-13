@@ -6,12 +6,12 @@ Vertex::Vertex()
 {
 }
 
-Vertex::Vertex(float q, float w, float a, float c, float d, float e)
+Vertex::Vertex(float vx, float vy, float vz, float vr, float vg, float vb)
 {
-    x = q, y = w, z = a, r = c, g = d, b = e;
+    x = vx, y = vy, z = vz, r = vr, g = vg, b = vb;
 }
 
-void Vertex::vertexInformation()
+void Vertex::vertexInformation() const
 {
     std::cout << "Position(X, Y, Z) => Position(" << x << ", " << y << ", " << z << ")" << std::endl;
     std::cout << "Color(R, G, B) => Color(" << r << ", " << g << ", " << b << ")" << std::endl;
@@ -19,42 +19,42 @@ void Vertex::vertexInformation()
 
 //  “set” methods that allow the user to store (x,y,z) values for each
 //   point and the (R,G,B) value
-void Vertex::setPosition(float a, float b, float c)
+void Vertex::setPosition(float sx, float sy, float sz)
 {
-    x = a, y = b, z = c;
+    x = sx, y = sy, z = sz;
 }
 
-void Vertex::setColor(float p, float l, float m)
+void Vertex::setColor(float sr, float sg, float sb)
 {
-    r = p, g = l, b = m;
+    r = sr, g = sg, b = sb;
 }
 
-float Vertex::getR()
+float Vertex::getR() const
 {
     return r;
 }
 
-float Vertex::getG()
+float Vertex::getG() const
 {
     return g;
 }
 
-float Vertex::getB()
+float Vertex::getB() const
 {
     return b;
 }
 
-float Vertex::getX()
+float Vertex::getX() const
 {
     return x;
 }
 
-float Vertex::getY()
+float Vertex::getY() const
 {
     return y;
 }
 
-float Vertex::getZ()
+float Vertex::getZ() const
 {
     return z;
 }

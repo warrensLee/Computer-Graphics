@@ -11,11 +11,11 @@ Polygon::Polygon(std::vector<Vertex> info) // real constructor
     vertices = info;
 }
 
-void Polygon::setPolygonColor(float a, float b, float c) // set each vertex's color to make the whole polygon the same color
+void Polygon::setPolygonColor(float sx, float sy, float sz) // set each vertex's color to make the whole polygon the same color
 {
     for (Vertex &v : vertices) // iterate thru each vertex in the vector
     {
-        v.setColor(a, b, c); // simple set color method implemented within Vertex class
+        v.setColor(sx, sy, sz); // simple set color method implemented within Vertex class
     }
 }
 
@@ -24,7 +24,7 @@ int Polygon::numVertices()
     return vertices.size();
 }
 
-void Polygon::polygonInformation()
+void Polygon::polygonInformation() 
 {
     std::cout << "This polygon has " << numVertices() << " vertices" << std::endl; // output how many vertices there are
     int count = 1;                                                                 // track what vertex we are on
